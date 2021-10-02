@@ -16,12 +16,13 @@ export class WorkshopPipelineStack extends cdk.Stack {
     const cloudAssemblyArtifact = new codepipeline.Artifact();
 
     const pipeline = new CdkPipeline(this, 'Pipeline', {
-      pipelineName: 'WOrkshopPipeline',
+      pipelineName: 'WorkshopPipeline',
       cloudAssemblyArtifact,
       sourceAction: new codepipeline_actions.CodeCommitSourceAction({
         actionName: 'CodeCommit',
         output: sourceArtifact,
         repository: repo,
+        branch: 'main',
       }),
 
       synthAction: SimpleSynthAction.standardNpmSynth({
